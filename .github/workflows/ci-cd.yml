@@ -1,0 +1,29 @@
+name: CI-CD Node Project
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "21"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Install pm2 globally
+        run: npm install pm2 -g
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Deploy to AWS
+        run: pm2 start src/app.js
