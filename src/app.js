@@ -22,9 +22,6 @@ app.get('/', (req, res) => {
     });
   } catch (err) {
     console.error('Failed to connect to DB, exiting:', err.message);
-    process.exit(1); });
-  } catch (err) {
-    console.error('Failed to connect to DB, exiting:', err.message);
     process.exit(1);
   }
 })();

@@ -1,10 +1,11 @@
 const express = require('express');
-const ctrl = require('../controllers/usersController');
-
 const router = express.Router();
 
-router.post('/', ctrl.create);
-router.get('/', ctrl.list);
-router.get('/:id', ctrl.get);
+const usersController = require('../controllers/usersController');
+
+// Handlers must be functions, NOT invoked here!
+router.get('/', usersController.getUsers);
+router.post('/', usersController.createUser);
+router.get('/:id', usersController.getUserById);
 
 module.exports = router;
