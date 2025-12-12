@@ -13,10 +13,15 @@ app.get('/', (req, res) => {
   res.json({ status: 'ok', env: process.env.NODE_ENV || 'dev' });
 });
 
+
+
 // ensure DB is reachable before starting
 (async function start() {
   try {
-    await db.testConnection();
+    if (process.env.NODE_ENV !== "test") {
+      await db.testConnection();
+    }
+
     app.listen(PORT, () => {
       console.log(`Server listening on port ${PORT}`);
     });
