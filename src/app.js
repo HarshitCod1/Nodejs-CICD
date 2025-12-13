@@ -1,24 +1,6 @@
-require('dotenv').config();
-const express = require('express');
-const usersRoutes = require('./routes/users');
-const db = require('./db');
-
-const PORT = process.env.PORT || 3000;
-const app = express();
-
-app.use(express.json());
-app.use('/users', usersRoutes);
-
-app.get('/', (req, res) => {
-  res.json({ status: 'ok', env: process.env.NODE_ENV || 'dev' });
-});
-
-
-
-// ensure DB is reachable before starting
 (async function start() {
   try {
-    if (process.env.NODE_ENV !== "test") {
+    if (process.env.NODE_ENV !== 'test') {
       await db.testConnection();
     }
 
@@ -30,5 +12,3 @@ app.get('/', (req, res) => {
     process.exit(1);
   }
 })();
-
-module.exports = app;
