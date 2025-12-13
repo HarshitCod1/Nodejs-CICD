@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  "start": "node src/app.js",
+
     "dev": "NODE_ENV=development nodemon src/app.js",
-    "test": "jest --runInBand",
-    "prepare-deploy": "npm run build || true"
+     "start": "node src/server.js",
+     "test": "jest --runInBand --detectOpenHandles",
+     "prepare-deploy": "npm run build || true"
   },
   "author": "harshit",
   "license": "ISC",

@@ -1,14 +1,11 @@
-(async function start() {
-  try {
-    if (process.env.NODE_ENV !== 'test') {
-      await db.testConnection();
-    }
+const express = require('express');
 
-    app.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}`);
-    });
-  } catch (err) {
-    console.error('Failed to connect to DB, exiting:', err.message);
-    process.exit(1);
-  }
-})();
+const app = express();
+
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
+module.exports = app;
