@@ -1,18 +1,16 @@
 const app = require('./app');
 const db = require('./db');
-
 const PORT = process.env.PORT || 3000;
 
-(async function startServer() {
+(async function start() {
   try {
     await db.testConnection();
-    console.log('Database connected');
-
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
+    console.log('✅ Database connected');
   } catch (err) {
-    console.error('Failed to connect to DB:', err.message);
-    process.exit(1);
+    console.error('⚠️ DB not connected, starting server anyway');
   }
+
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
 })();
